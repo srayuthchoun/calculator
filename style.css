@@ -4,30 +4,21 @@ body {
 .container {
     background-color: #2e3432;
     height:400px;
-    width:350px;
+    width:340px;
     border-radius:20px;
     position:relative;
     top:80px;
     left:40%;
 }
 .display_screen {
-    background-color:#222;
+    background-color: #bccd95;
     width:310px;
     position:relative;
     left:15px;
     top:20px;
     height:60px;
-}
-.display_screen input {
-    position:relative;
-    left:2px;
-    top:2px;
-    height:48px;
-    color:black;
-    background-color:#bccd95;
-    font-size:21px;
-    text-align:right;
-    width: 303px;
+    font-size: 50px;
+    text-align: right;
 }
 .buttons {
     position:relative;
