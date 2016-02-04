@@ -2,67 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculator v0.5</title>
+    <title>Calculator v1.0</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://Learning-Fuze.github.io/calculator/calculator.js"></script>
-    <script>
-
-        function input_check(type, value, item) {
-            switch (value) {
-                case undefined:
-                    $('.display_screen').html("");
-                    break;
-                default:
-                    $('.display_screen').html(value);
-                    break;
-            }
-        }
-
-        var my_calculator = new calculator(input_check);
-
-        $(document).ready(function () {
-            $('button').on('click', function () {
-                var val = $(this).text();
-                switch (val) {
-                    case 'CE':
-                        my_calculator.allClear();
-                        break;
-                    case 'C':
-                        my_calculator.clear();
-                        break;
-                    default:
-                        my_calculator.addItem($(this).text());
-                        break;
-                }
-            });
-        });
-
-    </script>
+    <script src="main.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="display_screen">
         </div>
         <div class="buttons">
-            <button class="button_keys" id="c">C</button>
-            <button class="button_keys" id="ce">CE</button><br>
-            <button class="button_keys">7</button>
-            <button class="button_keys">8</button>
-            <button class="button_keys">9</button>
-            <button class="button_keys symbols">/</button>
-            <button class="button_keys">4</button>
-            <button class="button_keys">5</button>
-            <button class="button_keys">6</button>
-            <button class="button_keys symbols">x</button>
-            <button class="button_keys">1</button>
-            <button class="button_keys">2</button>
-            <button class="button_keys">3</button>
-            <button class="button_keys symbols">-</button>
-            <button class="button_keys">0</button>
-            <button class="button_keys">.</button>
+            <button class="button_keys" id="clear">C</button>
+            <button class="button_keys" id="clear_all">CE</button><br>
+            <button class="button_keys" id="numbers">7</button>
+            <button class="button_keys" id="numbers">8</button>
+            <button class="button_keys" id="numbers">9</button>
+            <button class="button_keys" id="operators">/</button>
+            <button class="button_keys" id="numbers">4</button>
+            <button class="button_keys" id="numbers">5</button>
+            <button class="button_keys" id="numbers">6</button>
+            <button class="button_keys" id="operators">x</button>
+            <button class="button_keys" id="numbers">1</button>
+            <button class="button_keys" id="numbers">2</button>
+            <button class="button_keys" id="numbers">3</button>
+            <button class="button_keys" id="operators">-</button>
+            <button class="button_keys" id="numbers">0</button>
+            <button class="button_keys" id="numbers">.</button>
             <button class="button_keys" id="equal">=</button>
-            <button class="button_keys symbols">+</button>
+            <button class="button_keys" id="operators">+</button>
         </div>
     </div>
 </body>

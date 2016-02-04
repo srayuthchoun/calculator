@@ -5,7 +5,7 @@ body {
     background-color: #2e3432;
     height:400px;
     width:340px;
-    border-radius:20px;
+    border-radius:10px;
     position:relative;
     top:80px;
     left:40%;
@@ -36,16 +36,16 @@ body {
     color:white;
     background-color: black;
 }
-.symbols {
+.operators {
     background-color: darkred;
     color: white;
 }
 #equal {
     background-color: darkgoldenrod;
 }
-#c {
+#clear {
     background-color: darkblue;
 }
-#ce {
+#clear_all {
     background-color: darkblue;
 }
