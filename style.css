@@ -1,6 +1,14 @@
 body {
     background-color:lightblue;
 }
+h5 {
+    font-size: 75px;
+    position: relative;
+    color: #3a3a3a;
+    margin: 0;
+    left: 40%;
+}
+
 .container {
     background-color: #2e3432;
     height:400px;
@@ -40,12 +48,12 @@ body {
     background-color: darkred;
     color: white;
 }
-#equal {
+.equal {
     background-color: darkgoldenrod;
 }
-#clear {
+.clear {
     background-color: darkblue;
 }
-#clear_all {
+.clear_all {
     background-color: darkblue;
 }
