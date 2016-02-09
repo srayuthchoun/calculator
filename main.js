@@ -1,118 +1,135 @@
-var button_input_array = [''];
-var array_input_index = 0;
+/* Standard Calculator */
+
+var input_array = ['']; //empty string array to place the input button values
+var input_index = 0; //used as an pointer for the button input array
+
 $(document).ready(function () {
     //Click handler for numbers button and calls store number function.
     $('.numbers').click(function () {
-        console.log('number clicked: ', this);
-        store_number($(this).text());
+        console.log(($(this).text()));
+        store_number($(this).text());  //Clicked number button value is passed through the store_number function
     });
 
     //Click handler for operators button and calls store operator function.
     $('.operators').click(function() {
-        console.log('operator button clicked: ', this);
-        store_operator($(this).text());
+        store_operator($(this).text()); //Clicked operators button value is passed through the store_number function
     });
 
     //Click handler for clear all button.
-    $('.clear_all').click(function(){
-        console.log('clear all button clicked: ', this);
-        clear_all();
-    });
     $('.clear').click(function(){
-        console.log('cler button clicked: ', this);
-        clear();
+        clear_all(); //clear all function called when clear button is clicked
     });
+    $('.clear_entry').click(function(){
+        clear_entry();
+    });
+
     //Click handler for equal button. Switch case processes which operand and calculates.
     $('.equal').click(function(){
-       console.log('equal button clicked');
-       calculate();
-       $('.display_screen').text(result);
+        calculate(); //calculate function called when equal button is clicked
+
     });
 });
 
 //Function to store the numbers button value to the input array
 function store_number(button_value){
-        console.log('store number button_value ', button_value);
-        button_input_array[array_input_index] += button_value; //Stores number button value into the input array
-        //array_input_index++; //increments the input_index value
-        //button_input_array[array_input_index]='';
-        console.log('input storage: ', button_input_array);
-        update_display();
+    //Conditional to avoid last value in the array is a decimal and the next value is a decimal
+    if(input_array[input_index][input_array[input_index].length - 1] === '.' && button_value === '.') {
+        if(input_array[input_index - 1] >= 0)
+            input_array[input_index - 1] = button_value;
+    }
+    //No decimal will add the number to the array based on the input index
+    else {
+        input_array[input_index] += button_value;
+    }
+    update_display(); //displays the value on the calculator screen
+    console.log(input_array);
 }
 
 //Function to store the operator button value to the input array
-function store_operator(button_value){
-    console.log('store operator button_value',button_value);
-    array_input_index++; //increments the input_index value
-    button_input_array[array_input_index]=button_value; //Stores operator value into the input array
-    array_input_index++; //increments the input_index value
-    button_input_array[array_input_index]=''; //adds empty string to the input_array
-    console.log('input storage = ', button_input_array);
-    update_display(); //shows button value on the display screen
+function store_operator(button_value) {
+    //Conditional that checks if it's the first index of the input array
+    if(input_index === 0 && input_array[input_index] === "") {
+        if(button_value == '-') {
+            input_array[input_index] = 0;
+            input_index++;
+            input_array[input_index] = '-';
+            input_index++;
+            input_array[input_index] = "";
+        }
+        return;
+    }
+    //Conditional that checks if a operator button was already pressed
+    if((input_array[input_index - 1]) && input_array[input_index] === "") {
+        input_array[input_index - 1] = button_value; //switches the current operator with a new operator
+    } else {
+        input_index++;
+        input_array[input_index] = button_value;
+        input_index++;
+        input_array[input_index] = "";
+    }
+    update_display();
 }
 
 //Function to store the calculated total and clear input_storage array and storage_index
 function store_caculation(result){
     console.log('store operator button_value', result);
-    button_input_array = ['']; //set input_storage to an empty string array
-    array_input_index = 0; //set storage_index back to 0
-    button_input_array[array_input_index]+=result; //add result into the input storage array
-    console.log('input storage = ', button_input_array);
+    input_array = ['']; //set input_storage to an empty string array
+    input_index = 0; //set storage_index back to 0
+    input_array[input_index]+=result; //add result into the input storage array
+    console.log('input storage = ', input_array);
     update_display(); //shows button value on the display screen
 }
 
-//Function to clear all in the array
+//Function to clear all in the array and set array and index to their starting value
 function clear_all(){
-    button_input_array = [''];
-    array_input_index = 0;
-    console.log("input array after clear all: ", button_input_array);
-    $('.display_screen').text('');
+    input_array = ['']; //sets input_array back to an empty string array
+    input_index = 0; //set input_index to zero
+    console.log("input array after clear all: ", input_array);
+    $('.display_screen').text(''); //clears the display screen
 }
-/*function clear(){
-    button_input_array.pop();
-    array_input_index--;
+
+//Function to clear current entry in the array
+function clear_entry(){
+    if(input_array[input_index] === "" && input_index  > 0) {
+        input_index--;
+    }
+    input_array[input_index] = "";
     console.log("input array after clear: ", input_array);
-    update_display();
-}*/
+    update_display(); //displays the current values within the array on the calculator screen
+}
 
 //Function shows button value on the display screen of the calculator
 function update_display(){
     var output = '';
-    var total = '';
-    for(var i=0; i<button_input_array.length; i++){
-        output = output + button_input_array[i];
+    for(var i=0; i<input_array.length; i++){
+        output = output + input_array[i];
     }
     $('.display_screen').text(output);
 }
 
-function calculate(){
-    switch(button_input_array[1]) {
+//Function calculates the 2 number values based on the operator
+function calculate() {
+    switch(input_array[1]) {
         case '+':
-            result = parseFloat(button_input_array[0]) + parseFloat(button_input_array[2]);
-            console.log(result);
-            store_caculation(result);
+            total = parseFloat(input_array[0]) + parseFloat(input_array[2]);
+            console.log(total);
+            store_caculation(total);
             break;
         case '-':
-            result = parseFloat(button_input_array[0]) - parseFloat(button_input_array[2]);
-            console.log(result);
-            store_caculation(result);
+            result = parseFloat(input_array[0]) - parseFloat(input_array[2]);
+            console.log(total);
+            store_caculation(total);
             break;
         case 'x':
-            result = parseFloat(button_input_array[0]) * parseFloat(button_input_array[2]);
-            console.log(result);
-            store_caculation(result);
+            total= parseFloat(input_array[0]) * parseFloat(input_array[2]);
+            console.log(total);
+            store_caculation(total);
             break;
         case '/':
-            result = parseFloat(button_input_array[0]) / parseFloat(button_input_array[2]);
-            console.log(result);
-            store_caculation(result);
+            total = parseFloat(input_array[0]) / parseFloat(input_array[2]);
+            console.log(total);
+            store_caculation(total);
             break;
     }
+    $('.display_screen').text(total); //displays the total result on the calculator screen
 }
-
-
-
-
-
-
-
