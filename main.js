@@ -3,20 +3,22 @@
 var input_array = ['']; //empty string array to place the input button values
 var input_index = 0; //used as an pointer for the button input array
 var decimal = true;
+var operators_array = ['/', 'x', '+', '-'];
 
-//Function to store the numbers button value to the input array
-function store_decimal(button_value) {
-    input_array[input_index] += button_value;
-    console.log('insert decimal: ', button_value);
-    console.log(input_array[input_index]);
-    decimal = false;
-    update_display();
-}
 function store_number(button_value) {
-    input_array[input_index] += button_value;
-    update_display(); //displays the value on the calculator screen
-    console.log('store_number input array: ', input_array);
-    console.log('store_number input index: ', input_index);
+    if (button_value === '.' && decimal) {
+        input_array[input_index] += button_value;
+        console.log('insert decimal: ', button_value);
+        console.log(input_array[input_index]);
+        decimal = false;
+        update_display();
+    }
+    else if (!isNaN(button_value)) {
+        input_array[input_index] += button_value;
+        update_display(); //displays the value on the calculator screen
+        console.log('store_number input array: ', input_array);
+        console.log('store_number input index: ', input_index);
+    }
 }
 
 //Function to store the operator button value to the input array
@@ -85,25 +87,32 @@ function clear_all() {
 
 //Function to clear current entry in the array
 function clear_entry() {
-    if (input_array[input_index] === '' && input_index > 0) {
-        input_index--;
+    if(input_index == 2 && !isNaN(input_array[input_index])){
+        input_array.pop();
+        input_array[input_index] = '';
+        console.log('adding index');
+        return;
     }
-    input_array[input_index] = '';
+    input_index--;
+    if(input_index == 1){
+        input_array.pop();
+        input_index -= 2;
+        console.log('test');
+    }
+
+
     console.log('input array after clear: ', input_array);
+    console.log('clear_entry: ', input_index);
     update_display(); //displays the current values within the array on the calculator screen
+
 }
 
 $(document).ready(function () {
+
     //Click handler for numbers button and calls store number function
     $('.numbers').click(function () {
-        if (($(this).text()) === '.' && decimal) {
-            console.log('Decimal clicked: ', ($(this).text()));
-            store_decimal($(this).text());
-        }
-        else if (!isNaN($(this).text())) {
-            console.log('Numbers clicked: ', ($(this).text()));
-            store_number($(this).text());  //Clicked number button value is passed through the store_number function
-        }
+        console.log('Numbers clicked: ', ($(this).text()));
+        store_number($(this).text());  //Clicked number button value is passed through the store_number function
     });
 
     //Click handler for operators button and calls store operator function
