@@ -2,9 +2,9 @@
 
 var input_array = ['']; //empty string array to place the input button values
 var input_index = 0; //used as an pointer for the button input array
-var decimal = true;
-var operators_array = ['/', 'x', '+', '-'];
+var decimal = true; //variable used to set when a decimal has been inserted
 
+//store input numbers into input_array
 function store_number(button_value) {
     if (button_value === '.' && decimal) {
         input_array[input_index] += button_value;
