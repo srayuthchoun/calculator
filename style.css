@@ -29,8 +29,8 @@ h5 {
     width:340px;
     border-radius:10px;
     position:relative;
-    top:80px;
-    left:40%;
+    margin: auto;
+    top: 20vh;
 }
 .display_screen {
     background-color: #bccd95;
