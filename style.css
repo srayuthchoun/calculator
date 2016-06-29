@@ -12,20 +12,10 @@ html {
     background: radial-gradient(circle, #fff 20%, #ccc);
     background-size: cover;
 }
-body {
 
-}
-h5 {
-    font-size: 75px;
-    position: relative;
-    color: #3a3a3a;
-    margin: 0;
-    left: 40%;
-}
-
-.container {
+.calculator {
     background-color: #2e3432;
-    height:400px;
+    height: auto;
     width:340px;
     border-radius:10px;
     position:relative;
@@ -59,11 +49,11 @@ h5 {
     background-color: black;
 }
 .operators {
-    background-color: darkred;
-    color: white;
+    background-color: #636363;
+
 }
 .equal {
-    background-color: darkgoldenrod;
+    background-color: #1de8b5;
 }
 .clear {
     background-color: darkblue;
