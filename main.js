@@ -2,15 +2,15 @@
 
 var input_array = ['']; //empty string array to place the input button values
 var input_index = 0; //used as an pointer for the button input array
-var decimal = true; //variable used to set when a decimal has been inserted
+var decimal_clickable = true; //variable used to set when a decimal has been inserted
 
 //store input numbers into input_array
 function store_number(button_value) {
-    if (button_value === '.' && decimal) {
+    if (button_value === '.' && decimal_clickable) {
         input_array[input_index] += button_value;
         console.log('insert decimal: ', button_value);
         console.log(input_array[input_index]);
-        decimal = false;
+        decimal_clickable = false;
         update_display();
     }
     else if (!isNaN(button_value)) {
@@ -27,7 +27,7 @@ function store_operator(button_value) {
     input_index++; //increments the input_index value
     input_array[input_index] = '';
     console.log('input storage: ', input_array);
-    decimal = true;
+    decimal_clickable = true;
     update_display();
 }
 
@@ -81,6 +81,7 @@ function update_display() {
 function clear_all() {
     input_array = ['']; //sets input_array back to an empty string array
     input_index = 0; //set input_index to zero
+    decimal_clickable = true;
     console.log('input array after clear all: ', input_array);
     $('.display_screen').text(''); //clears the display screen
 }
