@@ -36,22 +36,22 @@ function calculate() {
 
     switch (input_array[1]) {
         case '+': //Add the two numbers when the operator is +
-            total = parseFloat(input_array[0]) + parseFloat(input_array[2]);
+            total = (parseFloat(input_array[0]) + parseFloat(input_array[2])).toPrecision(9);
             console.log(total);
             store_caculation(total);
             break;
         case '-': //Subtract the two numbers when the operator is -
-            total = parseFloat(input_array[0]) - parseFloat(input_array[2]);
+            total = (parseFloat(input_array[0]) - parseFloat(input_array[2])).toPrecision(9);
             console.log(total);
             store_caculation(total);
             break;
         case 'x': //Multiply the two numbers when the operator is x
-            total = parseFloat(input_array[0]) * parseFloat(input_array[2]);
+            total = (parseFloat(input_array[0]) * parseFloat(input_array[2])).toPrecision(9);
             console.log(total);
             store_caculation(total);
             break;
         case '/': //Divide the two numbers when the operator is /
-            total = parseFloat(input_array[0]) / parseFloat(input_array[2]);
+            total = (parseFloat(input_array[0]) / parseFloat(input_array[2])).toPrecision(9);
             console.log(total);
             store_caculation(total);
             break;
