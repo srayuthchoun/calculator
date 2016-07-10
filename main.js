@@ -3,7 +3,7 @@
 var input_array = ['']; //empty string array to place the input button values
 var input_index = 0; //used as an pointer for the button input array
 var decimal_clickable = true; //variable used to set when a decimal has been inserted
-
+var numbers_allowed = true;
 //store input numbers into input_array
 function store_number(button_value) {
     if (button_value === '.' && decimal_clickable) {
@@ -13,7 +13,7 @@ function store_number(button_value) {
         decimal_clickable = false;
         update_display();
     }
-    else if (!isNaN(button_value)) {
+    else if (!isNaN(button_value) && numbers_allowed) {
         input_array[input_index] += button_value;
         update_display(); //displays the value on the calculator screen
         console.log('store_number input array: ', input_array);
@@ -28,6 +28,7 @@ function store_operator(button_value) {
     input_array[input_index] = '';
     console.log('input storage: ', input_array);
     decimal_clickable = true;
+    numbers_allowed = true;
     update_display();
 }
 
@@ -36,22 +37,22 @@ function calculate() {
 
     switch (input_array[1]) {
         case '+': //Add the two numbers when the operator is +
-            total = (parseFloat(input_array[0]) + parseFloat(input_array[2])).toPrecision(9);
+            total = parseFloat(input_array[0]) + parseFloat(input_array[2]);
             console.log(total);
             store_caculation(total);
             break;
         case '-': //Subtract the two numbers when the operator is -
-            total = (parseFloat(input_array[0]) - parseFloat(input_array[2])).toPrecision(9);
+            total = parseFloat(input_array[0]) - parseFloat(input_array[2]);
             console.log(total);
             store_caculation(total);
             break;
         case 'x': //Multiply the two numbers when the operator is x
-            total = (parseFloat(input_array[0]) * parseFloat(input_array[2])).toPrecision(9);
+            total = parseFloat(input_array[0]) * parseFloat(input_array[2]);
             console.log(total);
             store_caculation(total);
             break;
         case '/': //Divide the two numbers when the operator is /
-            total = (parseFloat(input_array[0]) / parseFloat(input_array[2])).toPrecision(9);
+            total = parseFloat(input_array[0]) / parseFloat(input_array[2]);
             console.log(total);
             store_caculation(total);
             break;
@@ -66,6 +67,7 @@ function store_caculation(total) {
     input_array[input_index] += total; //add total into the input array
     console.log('input array = ', input_array);
     update_display(); //shows button value on the display screen
+    numbers_allowed = false;
 }
 
 //Function shows button value on the display screen of the calculator
@@ -82,6 +84,7 @@ function clear_all() {
     input_array = ['']; //sets input_array back to an empty string array
     input_index = 0; //set input_index to zero
     decimal_clickable = true;
+    numbers_allowed = true;
     console.log('input array after clear all: ', input_array);
     $('.display_screen').text(''); //clears the display screen
 }
