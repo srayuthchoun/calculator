@@ -60,6 +60,7 @@ function store_caculation(total) {
     input_index = 0; //set storage_index back to 0
     input_array[input_index] += calc_total; //add total into the input array
     numbers_allowed = false;
+    decimal_allowed = false;
     update_display(); //shows button value on the display screen
 }
 
