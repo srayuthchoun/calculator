@@ -83,7 +83,7 @@ html {
 
 @media (max-width: 375px) {
     .calculator {
-        top: 10vh;
+        top: 2vh;
         width: 360px;
     }
 }
