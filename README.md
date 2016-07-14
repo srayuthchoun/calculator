@@ -3,7 +3,7 @@
 
 ## About the Project
 
-This project was created to understand and practice HTML, CSS, Javascript, jQuery.
+This project was created to understand HTML, CSS, Javascript, jQuery.  Gaining an in-depth knowledge on user interface and error checking.
 
 ##Implemented Features
 
